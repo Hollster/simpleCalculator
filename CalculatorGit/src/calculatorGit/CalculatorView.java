@@ -55,78 +55,73 @@ public class CalculatorView extends JFrame {
 		contentPane.add(textOutput);
 		textOutput.setColumns(10);
 		
-		OperatorButton buttonPlus = new OperatorButton("+");
+		OutputButton buttonPlus = new OutputButton("+");
 		buttonPlus.setBounds(16, 77, 89, 23);
 		contentPane.add(buttonPlus);
 		
-		OperatorButton buttonMinus = new OperatorButton("-");
+		OutputButton buttonMinus = new OutputButton("-");
 		buttonMinus.setBounds(121, 77, 89, 23);
 		contentPane.add(buttonMinus);
 		
-		OperatorButton buttonTimes = new OperatorButton("*");
+		OutputButton buttonTimes = new OutputButton("*");
 		buttonTimes.setBounds(232, 77, 89, 23);
 		contentPane.add(buttonTimes);
 		
-		OperatorButton buttonDivided = new OperatorButton("/");
+		OutputButton buttonDivided = new OutputButton("/");
 		buttonDivided.setBounds(331, 77, 89, 23);
 		contentPane.add(buttonDivided);
 			
-		JButton buttonDel = new JButton("Del");
+		DeleteButton buttonDel = new DeleteButton("Del");
 		buttonDel.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				OutputButtons.removeLastCharacterFromArray();
-				OutputButtons.updateScreen();
+				DeleteButton.removeLastCharacterFromArray();
+				CalculatorButton.convertToStringThenCallUpdate();
 			}
 		});
 		buttonDel.setBounds(331, 121, 89, 23);
 		contentPane.add(buttonDel);
 		
-		NumberButton buttonOK = new NumberButton("OK");
-		buttonOK.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				
-			}
-		});
+		OkButton buttonOK = new OkButton("OK");
 		buttonOK.setBounds(337, 155, 83, 57);
 		contentPane.add(buttonOK);
 		
-		NumberButton button_1 = new NumberButton("1");
+		OutputButton button_1 = new OutputButton("1");
 		button_1.setBounds(10, 121, 89, 23);
 		contentPane.add(button_1);
 		
-		NumberButton button_2 = new NumberButton("2");
+		OutputButton button_2 = new OutputButton("2");
 		button_2.setBounds(121, 121, 89, 23);
 		contentPane.add(button_2);
 		
-		NumberButton button_3 = new NumberButton("3");
+		OutputButton button_3 = new OutputButton("3");
 		button_3.setBounds(232, 121, 89, 23);
 		contentPane.add(button_3);
 		
-		NumberButton button_4 = new NumberButton("4");
+		OutputButton button_4 = new OutputButton("4");
 		button_4.setBounds(10, 155, 89, 23);
 		contentPane.add(button_4);
 		
-		NumberButton button_5 = new NumberButton("5");
+		OutputButton button_5 = new OutputButton("5");
 		button_5.setBounds(121, 155, 89, 23);
 		contentPane.add(button_5);
 		
-		NumberButton button_6 = new NumberButton("6");
+		OutputButton button_6 = new OutputButton("6");
 		button_6.setBounds(232, 155, 89, 23);
 		contentPane.add(button_6);
 		
-		NumberButton button_7 = new NumberButton("7");
+		OutputButton button_7 = new OutputButton("7");
 		button_7.setBounds(10, 189, 89, 23);
 		contentPane.add(button_7);
 		
-		NumberButton button_8 = new NumberButton("8");
+		OutputButton button_8 = new OutputButton("8");
 		button_8.setBounds(121, 189, 89, 23);
 		contentPane.add(button_8);
 		
-		NumberButton button_9 = new NumberButton("9");
+		OutputButton button_9 = new OutputButton("9");
 		button_9.setBounds(232, 189, 89, 23);
 		contentPane.add(button_9);
 		
-		NumberButton button_0 = new NumberButton("0");
+		OutputButton button_0 = new OutputButton("0");
 		button_0.setBounds(121, 229, 89, 23);
 		contentPane.add(button_0);
 	}
