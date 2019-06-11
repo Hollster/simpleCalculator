@@ -12,6 +12,7 @@ import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.SwingConstants;
+import java.awt.Font;
 
 public class CalculatorView extends JFrame {
 
@@ -46,6 +47,7 @@ public class CalculatorView extends JFrame {
 		contentPane.setLayout(null);
 		
 		textOutput = new JTextField();
+		textOutput.setFont(new Font("Tahoma", Font.PLAIN, 30));
 		textOutput.setHorizontalAlignment(SwingConstants.RIGHT);
 		textOutput.setBackground(Color.CYAN);
 		textOutput.setEditable(false);
@@ -72,6 +74,8 @@ public class CalculatorView extends JFrame {
 		JButton buttonDel = new JButton("Del");
 		buttonDel.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				OutputButtons.removeLastCharacterFromArray();
+				OutputButtons.updateScreen();
 			}
 		});
 		buttonDel.setBounds(331, 121, 89, 23);
