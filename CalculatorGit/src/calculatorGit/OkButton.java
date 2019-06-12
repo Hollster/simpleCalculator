@@ -7,96 +7,91 @@ import java.util.Arrays;
 import javax.swing.JOptionPane;
 
 public class OkButton extends CalculatorButton{
-	private static char nextChar;
 	private static char[] resultData;
-	private static int currentNumber;
-	private static int nextNumber;
+	private static int positionInResultData = 0;
+	
 	
 	OkButton(String okLabel)
 	{
 		super(okLabel);
 		this.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if(firstEntryIsANumber()) {
-					resultData = Arrays.copyOf(enteredData, positionInCalculation);
-					System.out.println(enteredData);
-					positionInCalculation = 0;
-					doCalculation();
+				resultData = Arrays.copyOf(enteredData, positionInCalculation);
+				double currentResult = getWholeNumber();
+				while(!isEndOfData()) {
+					char currentOperator = getCurrentOperator();
+					double nextResult = getWholeNumber();
+					currentResult = calculation(currentResult, nextResult, currentOperator);	
 				}
+				updateScreen(String.valueOf(currentResult));
 			}
 		});
 	}
 	
-	protected static void doCalculation() {
-			numberCheckNext();
-			CalculatorButton.updateScreen(String.valueOf(currentNumber));
+	
+	
+	private static double getWholeNumber() {
+		int startPosition = positionInResultData;
+		while (!isEndOfData() && resultData[positionInResultData + 1] >= '0' && resultData[positionInResultData + 1] <= '9') {
+			positionInResultData++;
+		}
+		positionInResultData++;
+		return Double.parseDouble(String.valueOf(Arrays.copyOfRange(resultData, startPosition, positionInResultData)));
 	}
 	
-	protected static boolean firstEntryIsANumber() {
-		if(isNumber(enteredData[0])) {	
+	private static boolean isEndOfData () {
+		if(positionInResultData + 1 >= resultData.length) {
 			return true;
-		}
-		else {
-			JOptionPane.showMessageDialog(null, "Invalid Entry, please start your entry with a number");
+		} else {
 			return false;
 		}
 	}
 	
-	protected static void numberCheckNext() {
-		currentNumber = Character.getNumericValue(resultData[positionInCalculation]);
-		getWholeNumber(positionInCalculation);
+	private static char getCurrentOperator() {
+		positionInResultData++;
+		return resultData[positionInResultData -1];
 	}
+		
 	
-	private static void getWholeNumber(int startPosition) {
-		if(startPosition + 1 < resultData.length) {
-			if(isNumber(resultData[startPosition + 1])) {
-				getWholeNumber(startPosition + 1);
-			}
-			else {
-				currentNumber = Integer.parseInt(String.valueOf(Arrays.copyOfRange(resultData, positionInCalculation, startPosition + 1)));
-				positionInCalculation = startPosition;
-				System.out.println("this is the whole number: " + currentNumber);
-				operatorCheckNext();
-			}
-		} else {
-				currentNumber = Integer.parseInt(String.valueOf(Arrays.copyOfRange(resultData, positionInCalculation, startPosition + 1)));
-				positionInCalculation = startPosition;
-				System.out.println("this is the whole number: " + currentNumber);
-		}
-	}
-	
-	private static void operatorCheckNext() {
-		if(positionInCalculation + 1 < resultData.length) {
-			nextChar = resultData[positionInCalculation + 1];
-			if(!isNumber(nextChar)) {
-				JOptionPane.showMessageDialog(null, "Invalid entry, you can't enter two operators in immediate succession");
+	private static double calculation (double currentResult, double nextResult, char operator) {
+		switch (operator) {
+		case '+':
+			if (nextIsLineOperator()) {
+				return currentResult + nextResult;
 			} else {
-				if (resultData[positionInCalculation] == '*' || resultData[positionInCalculation] == '/') {
-					pointCalculation();
-				}
+				return currentResult + calculateNextResult(nextResult);
 			}
-		}	
-		// ansonsten wird die letzte eingabe einfach ignoriert
+		case '-':
+			if (nextIsLineOperator()) {
+				return currentResult - nextResult;
+			} else {
+				return currentResult - calculateNextResult(nextResult);
+			}
+		case '*':
+			return currentResult * nextResult;
+		case '/':
+			return currentResult / nextResult;
+		default:
+			System.exit(1);
+			return currentResult;
+		}
 	}
 	
-	private static boolean isNumber(char entry) {
-		if(entry >= '0' && entry <= '9') {	
+	private static double calculateNextResult(double currentNumber) {
+		return 77.7;
+	}
+	
+	private static boolean nextIsLineOperator() {
+		if (!isEndOfData()) {
+			if (getCurrentOperator() == '-' || getCurrentOperator() == '+' ){
+				positionInResultData--;
+				return true;	
+			} else {
+				positionInResultData--;
+				return false;
+			}
+		} else {
 			return true;
 		}
-		else {
-			return false;
-		}
-	}
-	
-	private static void pointCalculation() {
-		if(resultData[positionInCalculation] == '*') {
-			currentNumber *= resultData[positionInCalculation + 1];
-		} else {
-			currentNumber /= resultData[positionInCalculation + 1];
-		}
-	}
-	
-	private static void lineCalculation() {
-		//if(result)
 	}
 }
