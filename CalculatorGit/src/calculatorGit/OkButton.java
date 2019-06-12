@@ -3,7 +3,6 @@ package calculatorGit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Arrays;
-
 import javax.swing.JOptionPane;
 
 public class OkButton extends CalculatorButton{
@@ -17,30 +16,34 @@ public class OkButton extends CalculatorButton{
 			public void actionPerformed(ActionEvent e) {
 				resultData = Arrays.copyOf(enteredData, positionInCalculation);
 				positionInResultData = 0;
+				if (isNumber()) {
 				double currentResult = getWholeNumber();
 				while(!isEndOfData()) {
 					positionInResultData++;
 					char currentOperator = getCurrentOperator();
 					positionInResultData++;
-					double nextResult = getWholeNumber();
-					currentResult = calculation(currentResult, currentOperator, nextResult);	
+					if(isNumber()) {
+						double nextResult = getWholeNumber();
+						currentResult = calculation(currentResult, currentOperator, nextResult);	
+					} else {
+						JOptionPane.showMessageDialog(null, "Invalid entry, you can't enter two operators in immediate succession");
+						break;
+					}
 				}
 				updateScreen(String.valueOf(currentResult));
+			} else {
+				JOptionPane.showMessageDialog(null, "Please start your entry with a number");
+			}
+				
 			}
 		});
 	}
 
 	private static double getWholeNumber() {
-		// we need this as a default to compare to
 		int startPosition = positionInResultData;
-		// erst gucken, ob wir schon am ende sind
-		// wenn nein, gucken, ob der nächste character ne zahl ist
-		// falls ja, einen weiter gehen, das passiert so lange, bis wir an der letzten charakter sind, die eine zahl ist
 		while (!isEndOfData() && resultData[positionInResultData + 1] >= '0' && resultData[positionInResultData + 1] <= '9') {
 			positionInResultData++;
 		}
-		// wenn wir das ende erreicht haben, gehen wir mit dem counter einen hoch, dh jetzt sind wir eigentlich schon am ende oder beim operator
-		//positionInResultData++;
 		return Double.parseDouble(String.valueOf(Arrays.copyOfRange(resultData, startPosition, positionInResultData + 1)));
 	}
 	
@@ -52,11 +55,18 @@ public class OkButton extends CalculatorButton{
 		}
 	}
 	
+	private static boolean isNumber() {
+		if (resultData[positionInResultData] >= '0' && resultData[positionInResultData] <= '9') {
+			return true;
+		} else {
+			return false;
+		}
+	}
+	
 	private static char getCurrentOperator() {
 		return resultData[positionInResultData];
 	}
 		
-	
 	private static double calculation (double currentResult, char operator, double nextResult) {
 		switch (operator) {
 		case '+':
@@ -81,16 +91,21 @@ public class OkButton extends CalculatorButton{
 		}
 	}
 	
-	private static double calculateNextResult(double nextResult) {
-		double currentResult = nextResult;
+	private static double calculateNextResult(double currentResult) {
+		double nextResult = currentResult;
 		while (!isEndOfData() && !nextIsLineOperator()) {
 			positionInResultData++;
 			char currentOperator = getCurrentOperator();
 			positionInResultData++;
-			currentResult = getWholeNumber();			
-			currentResult = calculation(nextResult, currentOperator, currentResult);
+			if(isNumber()) {
+				nextResult = getWholeNumber();
+				nextResult = calculation(currentResult, currentOperator, nextResult);	
+			} else {
+				JOptionPane.showMessageDialog(null, "Invalid entry, you can't enter two operators in immediate succession");
+				break;
+			}
 		}
-		return currentResult;
+		return nextResult;
 	}
 	
 	private static boolean nextIsLineOperator() {
