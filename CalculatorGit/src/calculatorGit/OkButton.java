@@ -12,35 +12,35 @@ public class OkButton extends CalculatorButton{
 	OkButton(String okLabel)
 	{
 		super(okLabel);
-		this.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				resultData = Arrays.copyOf(enteredData, positionInCalculation);
-				positionInResultData = resultData[resultData.length - 1];
-				if(isNumber()) {
-					positionInResultData = 0;
-					if (isNumber()) {
-						double currentResult = getWholeNumber();
-						while(!isEndOfData()) {
-							positionInResultData++;
-							char currentOperator = getCurrentOperator();
-							positionInResultData++;
-							if(isNumber()) {
-								double nextResult = getWholeNumber();
-								currentResult = calculation(currentResult, currentOperator, nextResult);	
-							} else {
-								JOptionPane.showMessageDialog(null, "Invalid entry, you can't enter two operators in immediate succession");
-								break;
-							}
-						}
-						updateScreen(String.valueOf(currentResult));
-						} else {
-							JOptionPane.showMessageDialog(null, "Please start your entry with a number");
-						}
-				} else {
-					JOptionPane.showMessageDialog(null, "Invalid entry, can't end on operator");
-				}	
-			}
-		});
+//		this.addActionListener(new ActionListener() {
+//			public void actionPerformed(ActionEvent e) {
+//				resultData = Arrays.copyOf(enteredData, positionInCalculation);
+//				positionInResultData = resultData[resultData.length - 1];
+//				if(isNumber()) {
+//					positionInResultData = 0;
+//					if (isNumber()) {
+//						double currentResult = getWholeNumber();
+//						while(!isEndOfData()) {
+//							positionInResultData++;
+//							char currentOperator = getCurrentOperator();
+//							positionInResultData++;
+//							if(isNumber()) {
+//								double nextResult = getWholeNumber();
+//								currentResult = calculation(currentResult, currentOperator, nextResult);	
+//							} else {
+//								JOptionPane.showMessageDialog(null, "Invalid entry, you can't enter two operators in immediate succession");
+//								break;
+//							}
+//						}
+//						updateScreen(String.valueOf(currentResult));
+//						} else {
+//							JOptionPane.showMessageDialog(null, "Please start your entry with a number");
+//						}
+//				} else {
+//					JOptionPane.showMessageDialog(null, "Invalid entry, can't end on operator");
+//				}	
+//			}
+//		});
 	}
 
 	private static double getWholeNumber() {

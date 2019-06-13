@@ -13,18 +13,18 @@ public class OutputButton extends CalculatorButton{
 	
 	OutputButton(String number){
 		super(number);
-		this.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				if (positionInCalculation < 24) {
-					pressedButton = returnChar();
-					writeInputIntoArray();
-					convertToStringThenCallUpdate();
-					
-				} else {
-					JOptionPane.showMessageDialog(null, "Limit erreicht");
-				}
-			}
-		});
+//		this.addActionListener(new ActionListener() {
+//			public void actionPerformed(ActionEvent e) {
+//				if (positionInCalculation < 24) {
+//					pressedButton = returnChar();
+//					writeInputIntoArray();
+//					convertToStringThenCallUpdate();
+//					
+//				} else {
+//					JOptionPane.showMessageDialog(null, "Limit erreicht");
+//				}
+//			}
+//		});
 	}
 	
 	private char returnChar() {
