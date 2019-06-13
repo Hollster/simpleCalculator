@@ -43,8 +43,6 @@ public class CalculatorController {
 				deleteLastOperator(operatorList);
 			}
 			deleteFromScreen();
-			System.out.println("currentNumberList: " + Arrays.toString(currentNumberList.toArray()));
-			System.out.println("numberList: " + Arrays.toString(numberList.toArray()));
 		}
 	}
 	
