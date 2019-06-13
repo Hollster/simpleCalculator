@@ -6,12 +6,12 @@ import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
-import javax.swing.JButton;
 
 public class CalculatorView extends JFrame {
 
@@ -106,10 +106,7 @@ public class CalculatorView extends JFrame {
 		JButton buttonOK = new JButton("OK");
 		buttonOK.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				CalculatorController.finalEdit();
-				CalculatorController.doAllPointCalculations();
-				CalculatorController.postResult(CalculatorController.doAllLineCalculations());
-				CalculatorController.resetLists();
+				CalculatorController.calculation();
 			}
 		});
 		buttonOK.setBounds(337, 155, 83, 57);
