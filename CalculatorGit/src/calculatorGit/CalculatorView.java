@@ -11,6 +11,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
+import javax.swing.JButton;
 
 public class CalculatorView extends JFrame {
 
@@ -53,7 +54,7 @@ public class CalculatorView extends JFrame {
 		contentPane.add(textOutput);
 		textOutput.setColumns(10);
 		
-		OutputButton buttonPlus = new OutputButton("+");
+		JButton buttonPlus = new JButton("+");
 		buttonPlus.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				CalculatorController.writeOperatorToArrayList('+');
@@ -63,7 +64,7 @@ public class CalculatorView extends JFrame {
 		buttonPlus.setBounds(16, 77, 89, 23);
 		contentPane.add(buttonPlus);
 		
-		OutputButton buttonMinus = new OutputButton("-");
+		JButton buttonMinus = new JButton("-");
 		buttonMinus.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				CalculatorController.writeOperatorToArrayList('-');
@@ -73,7 +74,7 @@ public class CalculatorView extends JFrame {
 		buttonMinus.setBounds(121, 77, 89, 23);
 		contentPane.add(buttonMinus);
 		
-		OutputButton buttonTimes = new OutputButton("*");
+		JButton buttonTimes = new JButton("*");
 		buttonTimes.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				CalculatorController.writeOperatorToArrayList('*');
@@ -83,7 +84,7 @@ public class CalculatorView extends JFrame {
 		buttonTimes.setBounds(232, 77, 89, 23);
 		contentPane.add(buttonTimes);
 		
-		OutputButton buttonDivided = new OutputButton("/");
+		JButton buttonDivided = new JButton("/");
 		buttonDivided.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				CalculatorController.writeOperatorToArrayList('/');
@@ -93,7 +94,7 @@ public class CalculatorView extends JFrame {
 		buttonDivided.setBounds(331, 77, 89, 23);
 		contentPane.add(buttonDivided);
 			
-		DeleteButton buttonDel = new DeleteButton("Del");
+		JButton buttonDel = new JButton("Del");
 		buttonDel.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				CalculatorController.deleteLastEntry();
@@ -102,15 +103,19 @@ public class CalculatorView extends JFrame {
 		buttonDel.setBounds(331, 121, 89, 23);
 		contentPane.add(buttonDel);
 		
-		OkButton buttonOK = new OkButton("OK");
+		JButton buttonOK = new JButton("OK");
 		buttonOK.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				CalculatorController.finalEdit();
+				CalculatorController.doAllPointCalculations();
+				CalculatorController.postResult(CalculatorController.doAllLineCalculations());
+				CalculatorController.resetLists();
 			}
 		});
 		buttonOK.setBounds(337, 155, 83, 57);
 		contentPane.add(buttonOK);
 		
-		OutputButton button_1 = new OutputButton("1");
+		JButton button_1 = new JButton("1");
 		button_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				CalculatorController.addDigitToCurrentNumberList(1);
@@ -120,7 +125,7 @@ public class CalculatorView extends JFrame {
 		button_1.setBounds(10, 121, 89, 23);
 		contentPane.add(button_1);
 		
-		OutputButton button_2 = new OutputButton("2");
+		JButton button_2 = new JButton("2");
 		button_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				CalculatorController.addDigitToCurrentNumberList(2);
@@ -130,7 +135,7 @@ public class CalculatorView extends JFrame {
 		button_2.setBounds(121, 121, 89, 23);
 		contentPane.add(button_2);
 		
-		OutputButton button_3 = new OutputButton("3");
+		JButton button_3 = new JButton("3");
 		button_3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				CalculatorController.addDigitToCurrentNumberList(3);
@@ -140,7 +145,7 @@ public class CalculatorView extends JFrame {
 		button_3.setBounds(232, 121, 89, 23);
 		contentPane.add(button_3);
 		
-		OutputButton button_4 = new OutputButton("4");
+		JButton button_4 = new JButton("4");
 		button_4.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				CalculatorController.addDigitToCurrentNumberList(4);
@@ -150,7 +155,7 @@ public class CalculatorView extends JFrame {
 		button_4.setBounds(10, 155, 89, 23);
 		contentPane.add(button_4);
 		
-		OutputButton button_5 = new OutputButton("5");
+		JButton button_5 = new JButton("5");
 		button_5.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				CalculatorController.addDigitToCurrentNumberList(5);
@@ -160,7 +165,7 @@ public class CalculatorView extends JFrame {
 		button_5.setBounds(121, 155, 89, 23);
 		contentPane.add(button_5);
 		
-		OutputButton button_6 = new OutputButton("6");
+		JButton button_6 = new JButton("6");
 		button_6.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				CalculatorController.addDigitToCurrentNumberList(6);
@@ -170,7 +175,7 @@ public class CalculatorView extends JFrame {
 		button_6.setBounds(232, 155, 89, 23);
 		contentPane.add(button_6);
 		
-		OutputButton button_7 = new OutputButton("7");
+		JButton button_7 = new JButton("7");
 		button_7.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				CalculatorController.addDigitToCurrentNumberList(7);
@@ -180,7 +185,7 @@ public class CalculatorView extends JFrame {
 		button_7.setBounds(10, 189, 89, 23);
 		contentPane.add(button_7);
 		
-		OutputButton button_8 = new OutputButton("8");
+		JButton button_8 = new JButton("8");
 		button_8.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				CalculatorController.addDigitToCurrentNumberList(8);
@@ -190,7 +195,7 @@ public class CalculatorView extends JFrame {
 		button_8.setBounds(121, 189, 89, 23);
 		contentPane.add(button_8);
 		
-		OutputButton button_9 = new OutputButton("9");
+		JButton button_9 = new JButton("9");
 		button_9.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				CalculatorController.addDigitToCurrentNumberList(9);
@@ -200,7 +205,7 @@ public class CalculatorView extends JFrame {
 		button_9.setBounds(232, 189, 89, 23);
 		contentPane.add(button_9);
 		
-		OutputButton button_0 = new OutputButton("0");
+		JButton button_0 = new JButton("0");
 		button_0.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				CalculatorController.addDigitToCurrentNumberList(0);
