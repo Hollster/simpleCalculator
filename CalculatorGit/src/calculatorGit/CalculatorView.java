@@ -57,7 +57,7 @@ public class CalculatorView extends JFrame {
 		JButton buttonPlus = new JButton("+");
 		buttonPlus.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				CalculatorController.writeOperatorToArrayList('+');
+				CalculatorController.appendOperator('+');
 				CalculatorController.addToScreen('+');
 			}
 		});
@@ -67,7 +67,7 @@ public class CalculatorView extends JFrame {
 		JButton buttonMinus = new JButton("-");
 		buttonMinus.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				CalculatorController.writeOperatorToArrayList('-');
+				CalculatorController.appendOperator('-');
 				CalculatorController.addToScreen('-');
 			}
 		});
@@ -77,7 +77,7 @@ public class CalculatorView extends JFrame {
 		JButton buttonTimes = new JButton("*");
 		buttonTimes.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				CalculatorController.writeOperatorToArrayList('*');
+				CalculatorController.appendOperator('*');
 				CalculatorController.addToScreen('*');
 			}
 		});
@@ -87,7 +87,7 @@ public class CalculatorView extends JFrame {
 		JButton buttonDivided = new JButton("/");
 		buttonDivided.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				CalculatorController.writeOperatorToArrayList('/');
+				CalculatorController.appendOperator('/');
 				CalculatorController.addToScreen('/');
 			}
 		});
@@ -115,7 +115,7 @@ public class CalculatorView extends JFrame {
 		JButton button_1 = new JButton("1");
 		button_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				CalculatorController.addDigitToCurrentNumberList(1);
+				CalculatorController.appendDigit(1);
 				CalculatorController.addToScreen('1');
 			}
 		});
@@ -125,7 +125,7 @@ public class CalculatorView extends JFrame {
 		JButton button_2 = new JButton("2");
 		button_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				CalculatorController.addDigitToCurrentNumberList(2);
+				CalculatorController.appendDigit(2);
 				CalculatorController.addToScreen('2');
 			}
 		});
@@ -135,7 +135,7 @@ public class CalculatorView extends JFrame {
 		JButton button_3 = new JButton("3");
 		button_3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				CalculatorController.addDigitToCurrentNumberList(3);
+				CalculatorController.appendDigit(3);
 				CalculatorController.addToScreen('3');
 			}
 		});
@@ -145,7 +145,7 @@ public class CalculatorView extends JFrame {
 		JButton button_4 = new JButton("4");
 		button_4.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				CalculatorController.addDigitToCurrentNumberList(4);
+				CalculatorController.appendDigit(4);
 				CalculatorController.addToScreen('4');
 			}
 		});
@@ -155,7 +155,7 @@ public class CalculatorView extends JFrame {
 		JButton button_5 = new JButton("5");
 		button_5.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				CalculatorController.addDigitToCurrentNumberList(5);
+				CalculatorController.appendDigit(5);
 				CalculatorController.addToScreen('5');
 			}
 		});
@@ -165,7 +165,7 @@ public class CalculatorView extends JFrame {
 		JButton button_6 = new JButton("6");
 		button_6.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				CalculatorController.addDigitToCurrentNumberList(6);
+				CalculatorController.appendDigit(6);
 				CalculatorController.addToScreen('6');
 			}
 		});
@@ -175,7 +175,7 @@ public class CalculatorView extends JFrame {
 		JButton button_7 = new JButton("7");
 		button_7.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				CalculatorController.addDigitToCurrentNumberList(7);
+				CalculatorController.appendDigit(7);
 				CalculatorController.addToScreen('7');
 			}
 		});
@@ -185,7 +185,7 @@ public class CalculatorView extends JFrame {
 		JButton button_8 = new JButton("8");
 		button_8.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				CalculatorController.addDigitToCurrentNumberList(8);
+				CalculatorController.appendDigit(8);
 				CalculatorController.addToScreen('8');
 			}
 		});
@@ -195,7 +195,7 @@ public class CalculatorView extends JFrame {
 		JButton button_9 = new JButton("9");
 		button_9.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				CalculatorController.addDigitToCurrentNumberList(9);
+				CalculatorController.appendDigit(9);
 				CalculatorController.addToScreen('9');
 			}
 		});
@@ -205,7 +205,7 @@ public class CalculatorView extends JFrame {
 		JButton button_0 = new JButton("0");
 		button_0.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				CalculatorController.addDigitToCurrentNumberList(0);
+				CalculatorController.appendDigit(0);
 				CalculatorController.addToScreen('0');
 			}
 		});

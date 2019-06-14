@@ -6,38 +6,38 @@ import java.util.Arrays;
 public class CalculatorController {
 	// sollte eigentlich in CalculatorModel
 	static ArrayList<Double> numberList = new ArrayList<Double>(); 
-	static ArrayList<Double> currentNumberList = new ArrayList<Double>();
+	static ArrayList<Double> digitList = new ArrayList<Double>();
 	static ArrayList<Character> operatorList = new ArrayList<Character>();
 	
 // writing
-	public static void addDigitToCurrentNumberList(double currentDigit) {
-		currentNumberList.add(currentDigit);
+	public static void appendDigit(double currentDigit) {
+		digitList.add(currentDigit);
 	}
 	
-	private static void writeNumberToArrayList(double currentNumber) {
+	private static void appendNumber(double currentNumber) {
 		numberList.add(currentNumber);
 	}
 	
-	private static double getNumberFromDigits(ArrayList<Double> currentNumberList) {
+	private static double getNumberFromDigits(ArrayList<Double> digitList) {
 		double currentNumber = 0;
-		int listLength = currentNumberList.size();
+		int listLength = digitList.size();
 		for (int i = listLength - 1, power = 0; i >= 0; i--, power++) {
-			currentNumber = currentNumber + currentNumberList.get(i) * Math.pow(10, power);
+			currentNumber = currentNumber + digitList.get(i) * Math.pow(10, power);
 		}
 		return currentNumber;
 	}
 	
-	public static void writeOperatorToArrayList (char operator) {
-		writeNumberToArrayList(getNumberFromDigits(currentNumberList));
+	public static void appendOperator (char operator) {
+		appendNumber(getNumberFromDigits(digitList));
 		operatorList.add(operator);
-		currentNumberList.clear();
+		digitList.clear();
 	}
 
 // deleting
 	public static void deleteLastEntry() {
-		if (!currentNumberList.isEmpty() || !currentNumberList.isEmpty() || !numberList.isEmpty()) {
-			if(!currentNumberList.isEmpty()) {
-				deleteLastNumber(currentNumberList);
+		if (!digitList.isEmpty() || !digitList.isEmpty() || !numberList.isEmpty()) {
+			if(!digitList.isEmpty()) {
+				deleteLastNumber(digitList);
 			}
 			else {
 				deleteLastOperator(operatorList);
@@ -46,23 +46,23 @@ public class CalculatorController {
 		}
 	}
 	
-	private static void deleteLastNumber(ArrayList<Double> currentNumberList) {
-		int lengthList = currentNumberList.size();
-		currentNumberList.remove(lengthList-1);
+	private static void deleteLastNumber(ArrayList<Double> digitList) {
+		int lengthList = digitList.size();
+		digitList.remove(lengthList-1);
 	}
 	
 	private static void deleteLastOperator(ArrayList<Character> operatorList) {
 		operatorList.remove(operatorList.size()-1);
-		convertNumberToArrayList(numberList.get(numberList.size() - 1));
+		convertNumberToDigits(numberList.get(numberList.size() - 1));
 		numberList.remove(numberList.size() - 1);
 	}
 	
-	private static void convertNumberToArrayList(double number) {
+	private static void convertNumberToDigits(double number) {
 		int i = 0;
 		double rest = 0;
 		while ((number / Math.pow(10, i)) > 1) {
 			rest = (number % Math.pow(10, i + 1));
-			currentNumberList.add(0, rest / Math.pow(10, i));
+			digitList.add(0, rest / Math.pow(10, i));
 			number -= rest;
 			i++;
 		}
@@ -85,11 +85,11 @@ public class CalculatorController {
 	
 // Final Edit of Data
 	private static void finalEdit() {
-		if(currentNumberList.isEmpty()) {
+		if(digitList.isEmpty()) {
 			operatorList.remove(operatorList.size() - 1);
 		}
 		else {
-			writeNumberToArrayList(getNumberFromDigits(currentNumberList));
+			appendNumber(getNumberFromDigits(digitList));
 		}
 	}
 	
@@ -113,19 +113,11 @@ public class CalculatorController {
 	}
 		
 	private static boolean isPointCalculation(char currentOperator) {
-		if (currentOperator == '*' || currentOperator == '/') {
-			return true;
-		} else {
-			return false;
-		}
+		return currentOperator == '*' || currentOperator == '/';
 	}
 	
 	private static double pointCalculation(double firstNumber, double secondNumber, char operator) {
-		if (operator == '*') {
-			return firstNumber * secondNumber;
-		} else {
-			return firstNumber / secondNumber;
-		}
+		return operator == '*' ? firstNumber * secondNumber : firstNumber / secondNumber;
 	}
 	
 	private static double doAllLineCalculations() {
@@ -137,11 +129,7 @@ public class CalculatorController {
 	}
 
 	private static double lineCalculation(double firstNumber, double secondNumber, char operator) {
-		if (operator == '+') {
-			return firstNumber + secondNumber;
-		} else {
-			return firstNumber - secondNumber;
-		}
+		return operator == '+' ? firstNumber + secondNumber : firstNumber - secondNumber;
 	}
 	
 	private static void postResult(double result) {
@@ -150,7 +138,7 @@ public class CalculatorController {
 	
 	private static void resetLists() {
 		numberList.clear();
-		currentNumberList.clear();
+		digitList.clear();
 		operatorList.clear();
 	}
 }
