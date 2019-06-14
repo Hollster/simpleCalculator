@@ -60,7 +60,7 @@ public class CalculatorController {
 	private static void convertNumberToDigits(double number) {
 		int i = 0;
 		double rest = 0;
-		while ((number / Math.pow(10, i)) > 1) {
+		while ((number / Math.pow(10, i)) >= 1) {
 			rest = (number % Math.pow(10, i + 1));
 			digitList.add(0, rest / Math.pow(10, i));
 			number -= rest;
