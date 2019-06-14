@@ -58,7 +58,6 @@ public class CalculatorView extends JFrame {
 		buttonPlus.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				CalculatorController.appendOperator('+');
-				//CalculatorController.addToScreen('+');
 				CalculatorController.updateScreen();
 			}
 		});
@@ -69,7 +68,6 @@ public class CalculatorView extends JFrame {
 		buttonMinus.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				CalculatorController.appendOperator('-');
-				//CalculatorController.addToScreen('-');
 				CalculatorController.updateScreen();
 			}
 		});
@@ -80,7 +78,6 @@ public class CalculatorView extends JFrame {
 		buttonTimes.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				CalculatorController.appendOperator('*');
-				//CalculatorController.addToScreen('*');
 				CalculatorController.updateScreen();
 			}
 		});
@@ -91,7 +88,6 @@ public class CalculatorView extends JFrame {
 		buttonDivided.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				CalculatorController.appendOperator('/');
-				//CalculatorController.addToScreen('/');
 				CalculatorController.updateScreen();
 			}
 		});
@@ -120,7 +116,6 @@ public class CalculatorView extends JFrame {
 		button_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				CalculatorController.appendDigit(1);
-				//CalculatorController.addToScreen('1');
 				CalculatorController.updateScreen();
 			}
 		});
@@ -131,7 +126,6 @@ public class CalculatorView extends JFrame {
 		button_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				CalculatorController.appendDigit(2);
-				//CalculatorController.addToScreen('2');
 				CalculatorController.updateScreen();
 			}
 		});
@@ -142,7 +136,6 @@ public class CalculatorView extends JFrame {
 		button_3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				CalculatorController.appendDigit(3);
-				//CalculatorController.addToScreen('3');
 				CalculatorController.updateScreen();
 			}
 		});
@@ -153,7 +146,6 @@ public class CalculatorView extends JFrame {
 		button_4.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				CalculatorController.appendDigit(4);
-				//CalculatorController.addToScreen('4');
 				CalculatorController.updateScreen();
 			}
 		});
@@ -164,7 +156,6 @@ public class CalculatorView extends JFrame {
 		button_5.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				CalculatorController.appendDigit(5);
-				//CalculatorController.addToScreen('5');
 				CalculatorController.updateScreen();
 			}
 		});
@@ -175,7 +166,6 @@ public class CalculatorView extends JFrame {
 		button_6.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				CalculatorController.appendDigit(6);
-				//CalculatorController.addToScreen('6');
 				CalculatorController.updateScreen();
 			}
 		});
@@ -186,7 +176,6 @@ public class CalculatorView extends JFrame {
 		button_7.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				CalculatorController.appendDigit(7);
-				//CalculatorController.addToScreen('7');
 				CalculatorController.updateScreen();
 			}
 		});
@@ -197,7 +186,6 @@ public class CalculatorView extends JFrame {
 		button_8.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				CalculatorController.appendDigit(8);
-				//CalculatorController.addToScreen('8');
 				CalculatorController.updateScreen();
 			}
 		});
@@ -208,7 +196,6 @@ public class CalculatorView extends JFrame {
 		button_9.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				CalculatorController.appendDigit(9);
-				//CalculatorController.addToScreen('9');
 				CalculatorController.updateScreen();
 			}
 		});
@@ -219,7 +206,6 @@ public class CalculatorView extends JFrame {
 		button_0.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				CalculatorController.appendDigit(0);
-				//CalculatorController.addToScreen('0');
 				CalculatorController.updateScreen();
 			}
 		});

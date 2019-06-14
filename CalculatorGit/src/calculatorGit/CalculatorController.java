@@ -4,7 +4,6 @@ import java.text.DecimalFormat;
 import java.util.ArrayList;
 
 public class CalculatorController {
-	// sollte eigentlich in CalculatorModel
 	static ArrayList<Double> numberList = new ArrayList<Double>(); 
 	static ArrayList<Double> digitList = new ArrayList<Double>();
 	static ArrayList<Character> operatorList = new ArrayList<Character>();
@@ -112,7 +111,7 @@ public class CalculatorController {
 		}
 	}
 	
-	// Calculation
+// Calculation
 	public static void calculation() {
 		finalEdit();
 		doAllPointCalculations();
