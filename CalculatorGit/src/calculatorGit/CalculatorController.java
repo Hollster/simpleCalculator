@@ -1,28 +1,29 @@
 package calculatorGit;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
-import java.util.Arrays;
 
 public class CalculatorController {
 	// sollte eigentlich in CalculatorModel
-	static ArrayList<Integer> numberList = new ArrayList<Integer>(); 
-	static ArrayList<Integer> digitList = new ArrayList<Integer>();
+	static ArrayList<Double> numberList = new ArrayList<Double>(); 
+	static ArrayList<Double> digitList = new ArrayList<Double>();
 	static ArrayList<Character> operatorList = new ArrayList<Character>();
+	static DecimalFormat displayDigitFormat = new DecimalFormat("#");
 	
 // writing
-	public static void appendDigit(int currentDigit) {
+	public static void appendDigit(double currentDigit) {
 		digitList.add(currentDigit);
 	}
 	
-	private static void appendNumber(int currentNumber) {
+	private static void appendNumber(double currentNumber) {
 		numberList.add(currentNumber);
 	}
 	
-	private static int getNumberFromDigits(ArrayList<Integer> digitList) {
-		int currentNumber = 0;
+	private static double getNumberFromDigits(ArrayList<Double> digitList) {
+		double currentNumber = 0;
 		int listLength = digitList.size();
 		for (int i = listLength - 1, power = 0; i >= 0; i--, power++) {
-			currentNumber = currentNumber + digitList.get(i) * (int)Math.pow(10, power);
+			currentNumber = currentNumber + digitList.get(i) * Math.pow(10, power);
 		}
 		return currentNumber;
 	}
@@ -35,7 +36,6 @@ public class CalculatorController {
 		} else {
 			if (!numberList.isEmpty()) {
 				operatorList.set(operatorList.size() - 1, operator);
-				//deleteFromScreen();
 				updateScreen();
 			} else {
 				appendNumber(0);
@@ -55,6 +55,8 @@ public class CalculatorController {
 			}
 			updateScreen();
 			addZeroToBlankScreen();
+		} else {
+			CalculatorView.textOutput.setText("0");
 		}
 	}
 	
@@ -64,7 +66,7 @@ public class CalculatorController {
 		}
 	}
 	
-	private static void deleteLastNumber(ArrayList<Integer> digitList) {
+	private static void deleteLastNumber(ArrayList<Double> digitList) {
 		int lengthList = digitList.size();
 		digitList.remove(lengthList-1);
 	}
@@ -75,12 +77,12 @@ public class CalculatorController {
 		numberList.remove(numberList.size() - 1);
 	}
 	
-	private static void convertNumberToDigits(int number) {
+	private static void convertNumberToDigits(double number) {
 		int i = 0;
-		int rest = 0;
+		double rest = 0;
 		while ((number / Math.pow(10, i)) >= 1) {
-			rest = (number % (int)Math.pow(10, i + 1));
-			digitList.add(0, rest / (int)Math.pow(10, i));
+			rest = (number % Math.pow(10, i + 1));
+			digitList.add(0, rest / Math.pow(10, i));
 			number -= rest;
 			i++;
 		}
@@ -90,11 +92,11 @@ public class CalculatorController {
 	public static void updateScreen() {
 		String currentDisplay = "";
 		for (int i = 0; i < numberList.size(); i++) {
-			currentDisplay = currentDisplay + numberList.get(i);
+			currentDisplay = currentDisplay + displayDigitFormat.format(numberList.get(i));
 			currentDisplay = currentDisplay + operatorList.get(i);
 		}
 		for (int j = 0; j < digitList.size(); j++) {
-			currentDisplay = currentDisplay + digitList.get(j);
+			currentDisplay = currentDisplay + displayDigitFormat.format(digitList.get(j));
 		}
 		CalculatorView.textOutput.setText(currentDisplay);
 	}
@@ -114,7 +116,7 @@ public class CalculatorController {
 	public static void calculation() {
 		finalEdit();
 		doAllPointCalculations();
-		postResult(CalculatorController.doAllLineCalculations());
+		postResult(doAllLineCalculations());
 		resetLists();
 	}
 	
@@ -133,23 +135,23 @@ public class CalculatorController {
 		return currentOperator == '*' || currentOperator == '/';
 	}
 	
-	private static int pointCalculation(int firstNumber, int secondNumber, char operator) {
+	private static double pointCalculation(double firstNumber, double secondNumber, char operator) {
 		return operator == '*' ? firstNumber * secondNumber : firstNumber / secondNumber;
 	}
 	
-	private static int doAllLineCalculations() {
-		int result = numberList.get(0);
+	private static double doAllLineCalculations() {
+		double result = numberList.get(0);
 		for (int i = 0; i < operatorList.size(); i++) {
 			result = lineCalculation(result, numberList.get(i + 1), operatorList.get(i));
 		}
 		return result;
 	}
 
-	private static int lineCalculation(int firstNumber, int secondNumber, char operator) {
+	private static double lineCalculation(double firstNumber, double secondNumber, char operator) {
 		return operator == '+' ? firstNumber + secondNumber : firstNumber - secondNumber;
 	}
 	
-	private static void postResult(int result) {
+	private static void postResult(double result) {
 		CalculatorView.textOutput.setText(String.valueOf(result));
 	}
 	
