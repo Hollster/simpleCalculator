@@ -5,24 +5,24 @@ import java.util.Arrays;
 
 public class CalculatorController {
 	// sollte eigentlich in CalculatorModel
-	static ArrayList<Double> numberList = new ArrayList<Double>(); 
-	static ArrayList<Double> digitList = new ArrayList<Double>();
+	static ArrayList<Integer> numberList = new ArrayList<Integer>(); 
+	static ArrayList<Integer> digitList = new ArrayList<Integer>();
 	static ArrayList<Character> operatorList = new ArrayList<Character>();
 	
 // writing
-	public static void appendDigit(double currentDigit) {
+	public static void appendDigit(int currentDigit) {
 		digitList.add(currentDigit);
 	}
 	
-	private static void appendNumber(double currentNumber) {
+	private static void appendNumber(int currentNumber) {
 		numberList.add(currentNumber);
 	}
 	
-	private static double getNumberFromDigits(ArrayList<Double> digitList) {
-		double currentNumber = 0;
+	private static int getNumberFromDigits(ArrayList<Integer> digitList) {
+		int currentNumber = 0;
 		int listLength = digitList.size();
 		for (int i = listLength - 1, power = 0; i >= 0; i--, power++) {
-			currentNumber = currentNumber + digitList.get(i) * Math.pow(10, power);
+			currentNumber = currentNumber + digitList.get(i) * (int)Math.pow(10, power);
 		}
 		return currentNumber;
 	}
@@ -53,12 +53,18 @@ public class CalculatorController {
 			else {
 				deleteLastOperator(operatorList);
 			}
-			//deleteFromScreen();
 			updateScreen();
+			addZeroToBlankScreen();
 		}
 	}
 	
-	private static void deleteLastNumber(ArrayList<Double> digitList) {
+	private static void addZeroToBlankScreen() {
+		if(digitList.isEmpty() && numberList.isEmpty()) {
+			CalculatorView.textOutput.setText("0");
+		}
+	}
+	
+	private static void deleteLastNumber(ArrayList<Integer> digitList) {
 		int lengthList = digitList.size();
 		digitList.remove(lengthList-1);
 	}
@@ -69,31 +75,17 @@ public class CalculatorController {
 		numberList.remove(numberList.size() - 1);
 	}
 	
-	private static void convertNumberToDigits(double number) {
+	private static void convertNumberToDigits(int number) {
 		int i = 0;
-		double rest = 0;
+		int rest = 0;
 		while ((number / Math.pow(10, i)) >= 1) {
-			rest = (number % Math.pow(10, i + 1));
-			digitList.add(0, rest / Math.pow(10, i));
+			rest = (number % (int)Math.pow(10, i + 1));
+			digitList.add(0, rest / (int)Math.pow(10, i));
 			number -= rest;
 			i++;
 		}
 		
 	}
-	
-// Screen Updates	
-//	public static void addToScreen(char operator) {
-//		CalculatorView.textOutput.setText(CalculatorView.textOutput.getText() + operator);
-//	}
-//	
-//	public static void addToScreen(int number) {
-//		CalculatorView.textOutput.setText(CalculatorView.textOutput.getText() + number);
-//	}
-//	
-//	private static void deleteFromScreen() {
-//		String currentDisplay = CalculatorView.textOutput.getText();
-//		CalculatorView.textOutput.setText(currentDisplay.substring(0, currentDisplay.length() - 1));
-//	}
 	
 	public static void updateScreen() {
 		String currentDisplay = "";
@@ -141,23 +133,23 @@ public class CalculatorController {
 		return currentOperator == '*' || currentOperator == '/';
 	}
 	
-	private static double pointCalculation(double firstNumber, double secondNumber, char operator) {
+	private static int pointCalculation(int firstNumber, int secondNumber, char operator) {
 		return operator == '*' ? firstNumber * secondNumber : firstNumber / secondNumber;
 	}
 	
-	private static double doAllLineCalculations() {
-		double result = numberList.get(0);
+	private static int doAllLineCalculations() {
+		int result = numberList.get(0);
 		for (int i = 0; i < operatorList.size(); i++) {
 			result = lineCalculation(result, numberList.get(i + 1), operatorList.get(i));
 		}
 		return result;
 	}
 
-	private static double lineCalculation(double firstNumber, double secondNumber, char operator) {
+	private static int lineCalculation(int firstNumber, int secondNumber, char operator) {
 		return operator == '+' ? firstNumber + secondNumber : firstNumber - secondNumber;
 	}
 	
-	private static void postResult(double result) {
+	private static void postResult(int result) {
 		CalculatorView.textOutput.setText(String.valueOf(result));
 	}
 	
