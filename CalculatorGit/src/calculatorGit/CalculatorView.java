@@ -45,7 +45,7 @@ public class CalculatorView extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		textOutput = new JTextField();
+		textOutput = new JTextField("0");
 		textOutput.setFont(new Font("Tahoma", Font.PLAIN, 30));
 		textOutput.setHorizontalAlignment(SwingConstants.RIGHT);
 		textOutput.setBackground(Color.CYAN);
@@ -58,7 +58,8 @@ public class CalculatorView extends JFrame {
 		buttonPlus.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				CalculatorController.appendOperator('+');
-				CalculatorController.addToScreen('+');
+				//CalculatorController.addToScreen('+');
+				CalculatorController.updateScreen();
 			}
 		});
 		buttonPlus.setBounds(16, 77, 89, 23);
@@ -68,7 +69,8 @@ public class CalculatorView extends JFrame {
 		buttonMinus.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				CalculatorController.appendOperator('-');
-				CalculatorController.addToScreen('-');
+				//CalculatorController.addToScreen('-');
+				CalculatorController.updateScreen();
 			}
 		});
 		buttonMinus.setBounds(121, 77, 89, 23);
@@ -78,7 +80,8 @@ public class CalculatorView extends JFrame {
 		buttonTimes.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				CalculatorController.appendOperator('*');
-				CalculatorController.addToScreen('*');
+				//CalculatorController.addToScreen('*');
+				CalculatorController.updateScreen();
 			}
 		});
 		buttonTimes.setBounds(232, 77, 89, 23);
@@ -88,7 +91,8 @@ public class CalculatorView extends JFrame {
 		buttonDivided.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				CalculatorController.appendOperator('/');
-				CalculatorController.addToScreen('/');
+				//CalculatorController.addToScreen('/');
+				CalculatorController.updateScreen();
 			}
 		});
 		buttonDivided.setBounds(331, 77, 89, 23);
@@ -116,7 +120,8 @@ public class CalculatorView extends JFrame {
 		button_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				CalculatorController.appendDigit(1);
-				CalculatorController.addToScreen('1');
+				//CalculatorController.addToScreen('1');
+				CalculatorController.updateScreen();
 			}
 		});
 		button_1.setBounds(10, 121, 89, 23);
@@ -126,7 +131,8 @@ public class CalculatorView extends JFrame {
 		button_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				CalculatorController.appendDigit(2);
-				CalculatorController.addToScreen('2');
+				//CalculatorController.addToScreen('2');
+				CalculatorController.updateScreen();
 			}
 		});
 		button_2.setBounds(121, 121, 89, 23);
@@ -136,7 +142,8 @@ public class CalculatorView extends JFrame {
 		button_3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				CalculatorController.appendDigit(3);
-				CalculatorController.addToScreen('3');
+				//CalculatorController.addToScreen('3');
+				CalculatorController.updateScreen();
 			}
 		});
 		button_3.setBounds(232, 121, 89, 23);
@@ -146,7 +153,8 @@ public class CalculatorView extends JFrame {
 		button_4.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				CalculatorController.appendDigit(4);
-				CalculatorController.addToScreen('4');
+				//CalculatorController.addToScreen('4');
+				CalculatorController.updateScreen();
 			}
 		});
 		button_4.setBounds(10, 155, 89, 23);
@@ -156,7 +164,8 @@ public class CalculatorView extends JFrame {
 		button_5.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				CalculatorController.appendDigit(5);
-				CalculatorController.addToScreen('5');
+				//CalculatorController.addToScreen('5');
+				CalculatorController.updateScreen();
 			}
 		});
 		button_5.setBounds(121, 155, 89, 23);
@@ -166,7 +175,8 @@ public class CalculatorView extends JFrame {
 		button_6.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				CalculatorController.appendDigit(6);
-				CalculatorController.addToScreen('6');
+				//CalculatorController.addToScreen('6');
+				CalculatorController.updateScreen();
 			}
 		});
 		button_6.setBounds(232, 155, 89, 23);
@@ -176,7 +186,8 @@ public class CalculatorView extends JFrame {
 		button_7.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				CalculatorController.appendDigit(7);
-				CalculatorController.addToScreen('7');
+				//CalculatorController.addToScreen('7');
+				CalculatorController.updateScreen();
 			}
 		});
 		button_7.setBounds(10, 189, 89, 23);
@@ -186,7 +197,8 @@ public class CalculatorView extends JFrame {
 		button_8.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				CalculatorController.appendDigit(8);
-				CalculatorController.addToScreen('8');
+				//CalculatorController.addToScreen('8');
+				CalculatorController.updateScreen();
 			}
 		});
 		button_8.setBounds(121, 189, 89, 23);
@@ -196,7 +208,8 @@ public class CalculatorView extends JFrame {
 		button_9.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				CalculatorController.appendDigit(9);
-				CalculatorController.addToScreen('9');
+				//CalculatorController.addToScreen('9');
+				CalculatorController.updateScreen();
 			}
 		});
 		button_9.setBounds(232, 189, 89, 23);
@@ -206,7 +219,8 @@ public class CalculatorView extends JFrame {
 		button_0.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				CalculatorController.appendDigit(0);
-				CalculatorController.addToScreen('0');
+				//CalculatorController.addToScreen('0');
+				CalculatorController.updateScreen();
 			}
 		});
 		button_0.setBounds(121, 229, 89, 23);

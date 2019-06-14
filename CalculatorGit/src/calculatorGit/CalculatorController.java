@@ -33,8 +33,14 @@ public class CalculatorController {
 			operatorList.add(operator);
 			digitList.clear();
 		} else {
-			operatorList.set(operatorList.size() - 1, operator);
-			deleteFromScreen();
+			if (!numberList.isEmpty()) {
+				operatorList.set(operatorList.size() - 1, operator);
+				//deleteFromScreen();
+				updateScreen();
+			} else {
+				appendNumber(0);
+				operatorList.add(operator);
+			}
 		}
 	}
 
@@ -47,7 +53,8 @@ public class CalculatorController {
 			else {
 				deleteLastOperator(operatorList);
 			}
-			deleteFromScreen();
+			//deleteFromScreen();
+			updateScreen();
 		}
 	}
 	
@@ -75,18 +82,31 @@ public class CalculatorController {
 	}
 	
 // Screen Updates	
-	public static void addToScreen(char operator) {
-		CalculatorView.textOutput.setText(CalculatorView.textOutput.getText() + operator);
+//	public static void addToScreen(char operator) {
+//		CalculatorView.textOutput.setText(CalculatorView.textOutput.getText() + operator);
+//	}
+//	
+//	public static void addToScreen(int number) {
+//		CalculatorView.textOutput.setText(CalculatorView.textOutput.getText() + number);
+//	}
+//	
+//	private static void deleteFromScreen() {
+//		String currentDisplay = CalculatorView.textOutput.getText();
+//		CalculatorView.textOutput.setText(currentDisplay.substring(0, currentDisplay.length() - 1));
+//	}
+	
+	public static void updateScreen() {
+		String currentDisplay = "";
+		for (int i = 0; i < numberList.size(); i++) {
+			currentDisplay = currentDisplay + numberList.get(i);
+			currentDisplay = currentDisplay + operatorList.get(i);
+		}
+		for (int j = 0; j < digitList.size(); j++) {
+			currentDisplay = currentDisplay + digitList.get(j);
+		}
+		CalculatorView.textOutput.setText(currentDisplay);
 	}
 	
-	public static void addToScreen(int number) {
-		CalculatorView.textOutput.setText(CalculatorView.textOutput.getText() + number);
-	}
-	
-	private static void deleteFromScreen() {
-		String currentDisplay = CalculatorView.textOutput.getText();
-		CalculatorView.textOutput.setText(currentDisplay.substring(0, currentDisplay.length() - 1));
-	}
 	
 // Final Edit of Data
 	private static void finalEdit() {
