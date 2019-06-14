@@ -28,14 +28,19 @@ public class CalculatorController {
 	}
 	
 	public static void appendOperator (char operator) {
-		appendNumber(getNumberFromDigits(digitList));
-		operatorList.add(operator);
-		digitList.clear();
+		if(!digitList.isEmpty()) {
+			appendNumber(getNumberFromDigits(digitList));
+			operatorList.add(operator);
+			digitList.clear();
+		} else {
+			operatorList.set(operatorList.size() - 1, operator);
+			deleteFromScreen();
+		}
 	}
 
 // deleting
 	public static void deleteLastEntry() {
-		if (!digitList.isEmpty() || !digitList.isEmpty() || !numberList.isEmpty()) {
+		if (!digitList.isEmpty() || !operatorList.isEmpty() || !numberList.isEmpty()) {
 			if(!digitList.isEmpty()) {
 				deleteLastNumber(digitList);
 			}
